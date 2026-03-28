@@ -1,0 +1,132 @@
+/*
+===========================================================================================================================================
+INI ADALAH KODE PROGRAM BAHASA C BAGAIMANA CARA KERJA MEMESAN MENU DI SEBUAH RESTORAN
+
+PROGRAM INI DILENGKAPI DENGAN:
+1. FLEXIBLE MANAGEMENT DENGAN ADANYA FITUR CONFIGURATION DIHARAPKAN PENGGUNA AWAM BISA MENGUBAH MENU DAN HARGA DENGAN MUDAH
+2. RINCIAN PEMBELIAN MEMUDAHKAN PEMBELI YANG MEMESAN APA SAJA MENU YANG DIBELI
+3. ADANYA FITUR SALDO UNTUK MENGUJI APAKAH MENU YANG DIPESAN SESUAI SALDO ATAU TIDAK
+===========================================================================================================================================
+*/
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int input, item, totalprice = 0, qty, saldo;
+/*
+===========================================================================================================================================
+                                                             CONFIGURATION 
+===========================================================================================================================================
+*/
+    // NAMA RESTORAN
+    string namarestoran = "RESTORAN BANG RUSDI";
+
+
+    // HARGA TIAP MENU
+    int prices[] = {
+    /* 1 */ 10000, 
+    /* 2 */ 15000, 
+    /* 3 */ 30000, 
+    /* 4 */ 25000, 
+    /* 5 */ 20000, 
+    /* 6 */ 13000, 
+    /* 7 */ 35000, 
+    /* 8 */ 12000,
+    /* 9 */  3000,
+    /* 10 */ 5000,
+    /* 11 */ 4000
+    };
+
+    // MENU RESTORAN
+    string menu[] = {
+         /* 1 */"Nasi Goreng", 
+         /* 2 */"Soto Ayam", 
+         /* 3 */"Rendang", 
+         /* 4 */"Gado-gado", 
+         /* 5 */"Sate", 
+         /* 6 */"Pecel", 
+         /* 7 */"Nasi Padang", 
+         /* 8 */"Ayam geprek",
+         /* 9 */"Air Mineral",
+         /* 10 */"Es Teh",
+         /* 11 */"Teh Hangat"
+        };
+/*
+===========================================================================================================================================
+                                                             LINE OF CODE 
+===========================================================================================================================================
+*/
+    //MENGHITUNG JUMLAH DATA PADA ARRAY
+    int jml_menu = sizeof(menu)/sizeof(*menu);
+
+    // LIMITER
+    const int maxSize = 100;
+    vector<int> storeqty(maxSize, 0);
+    vector<string> storemenu(maxSize, "");
+
+    cout << "==========================================\n"
+         << namarestoran << "\n=========================================="
+         << endl;
+    cout << "Masukkan saldo: ";
+    cin >> saldo;
+    cout << "Saldo Anda: " << saldo << endl;
+     for (int i = 0; i < jml_menu; ++i) {
+        cout << i + 1 << ". " << menu[i] << ": " << prices[i] << endl;
+    }
+    cout << "MAU PESAN BERAPA ITEM ? MAKSIMAL: " << jml_menu << " ITEM" << endl;
+    cin >> item;
+
+    cout << "MAU PESAN APA ?\nDAFTAR MENU: " << endl;
+    for (int i = 0; i < jml_menu; ++i) {
+        cout << i + 1 << ". " << menu[i] << ": " << prices[i] << endl;
+    }
+
+    for (int i = 0; i < item; i++) {
+        cout << "Pilih menu: ";
+        cin >> input;
+        if(input == -1){
+    
+        }
+        if (input >= 1 && input <=  jml_menu) {
+            cout << "Jumlah pesanan: ";
+            cin >> qty;
+
+            if (qty >= 0) {
+                totalprice += qty * prices[input - 1];
+                storeqty[input - 1] = qty;
+                storemenu[input - 1] = menu[input - 1];
+                cout << "Anda memesan " << qty << " porsi " << menu[input - 1] << endl;
+            } else {
+                cout << "Jumlah pesanan tidak valid" << endl;
+                i -= 1;
+            }
+        } else {
+            cout << "Menu tidak tersedia" << endl;
+            i -= 1;
+        }
+
+        if (i == item - 1) {
+            cout << "==========================================\n"
+                 << "STRUK BELANJA" << "\n=========================================="
+                 << endl;
+            for (int j = 0; j < jml_menu; j++) {
+                if (!storemenu[j].empty()) {
+                    cout << "Nama menu: " << storemenu[j] << " || Kuantitas: " << storeqty[j] << " || Harga Satuan: " << prices[j] << " || Total harga menu: " << storeqty[j] * prices[j] << "\n=========================================="
+                         << endl;
+                }
+            }
+        }
+    }
+
+    cout << "Grandtotal: " << totalprice << endl;
+
+    if (saldo < totalprice) {
+        cout << "Saldo tidak cukup!" << endl;
+    } else {
+        saldo -= totalprice;
+        cout << "Pembayaran berhasil! Sisa saldo: " << saldo << endl;
+    }
+
+    return 0;
+}
