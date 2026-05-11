@@ -3,20 +3,24 @@
 
 using namespace std;
 
-int fungsi(int A, int B, int x){
+int f(int A, int B, int x){
     return abs(A*x + B);
 }
 int main(){
-    int A, B, K, x;
+    // tentukan nilai utebeka jika A = 1, B = 1, K = 5, x = 1
+   
+    int A, B, K, x, utebeka, q;
     cin >> A >> B >> K >> x;
-    // fungsi f(x) = abs(Ax + B)4
-    // compose fungsi sebanyak k kali
-
     for (int i=0;i<K;i++){
-       x = fungsi(A,B,x);
+       x = f(A,B,x);
     }
-    cout << x;
+
+    utebeka = x;
 
 }
+
+     
+    // bool condition = p > q;
+    // cout << p;
 
 
