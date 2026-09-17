@@ -1,2 +1,1 @@
-
-    hasil = angka + angka2
+word = input('enter ur word:')

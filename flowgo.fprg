@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Restoran Salman"/>
+        <attribute name="authors" value="Konversi C++ ke Flowgorithm"/>
+        <attribute name="about" value="Sistem Pemesanan Restoran"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="input, qty, saldo, pajak, diskon, totalprice, finalprice, jmlMenu, i, j" type="Integer" array="False" size=""/>
+            <declare name="lanjutPesan" type="Boolean" array="False" size=""/>
+            <declare name="namarestoran, header, footer" type="String" array="False" size=""/>
+            
+            <assign variable="totalprice" expression="0"/>
+            <assign variable="namarestoran" expression="&quot;RESTORAN SALMAN&quot;"/>
+            <assign variable="header" expression="&quot;No.Telp: 08123456789 | Website: www.algojo.com&quot;"/>
+            <assign variable="footer" expression="&quot;TERIMA KASIH, SELAMAT BERBELANJA&quot;"/>
+            <assign variable="pajak" expression="20"/>
+            <assign variable="diskon" expression="0"/>
+            <assign variable="jmlMenu" expression="28"/>
+
+            <declare name="menuNama" type="String" array="True" size="jmlMenu"/>
+            <declare name="menuHarga" type="Integer" array="True" size="jmlMenu"/>
+            <declare name="storeqty" type="Integer" array="True" size="jmlMenu"/>
+
+            <assign variable="menuNama[0]" expression="&quot;Nasi&quot;"/> <assign variable="menuHarga[0]" expression="20000"/>
+            <assign variable="menuNama[1]" expression="&quot;Omelet&quot;"/> <assign variable="menuHarga[1]" expression="30000"/>
+            <assign variable="menuNama[2]" expression="&quot;Nasi Goreng&quot;"/> <assign variable="menuHarga[2]" expression="48000"/>
+            <assign variable="menuNama[3]" expression="&quot;Soto Ayam&quot;"/> <assign variable="menuHarga[3]" expression="50000"/>
+            <assign variable="menuNama[4]" expression="&quot;Rendang&quot;"/> <assign variable="menuHarga[4]" expression="70000"/>
+            <assign variable="menuNama[5]" expression="&quot;Gado-Gado&quot;"/> <assign variable="menuHarga[5]" expression="60000"/>
+            <assign variable="menuNama[6]" expression="&quot;Sate&quot;"/> <assign variable="menuHarga[6]" expression="45000"/>
+            <assign variable="menuNama[7]" expression="&quot;Pecel&quot;"/> <assign variable="menuHarga[7]" expression="40000"/>
+            <assign variable="menuNama[8]" expression="&quot;Nasi Campur&quot;"/> <assign variable="menuHarga[8]" expression="65000"/>
+            <assign variable="menuNama[9]" expression="&quot;Ayam Goreng&quot;"/> <assign variable="menuHarga[9]" expression="38000"/>
+            <assign variable="menuNama[10]" expression="&quot;Bebek Goreng&quot;"/> <assign variable="menuHarga[10]" expression="42000"/>
+            <assign variable="menuNama[11]" expression="&quot;Nasi Padang&quot;"/> <assign variable="menuHarga[11]" expression="40000"/>
+            <assign variable="menuNama[12]" expression="&quot;Ayam Geprek&quot;"/> <assign variable="menuHarga[12]" expression="32000"/>
+            <assign variable="menuNama[13]" expression="&quot;Rujak Cingur&quot;"/> <assign variable="menuHarga[13]" expression="53000"/>
+            <assign variable="menuNama[14]" expression="&quot;Steak Ayam&quot;"/> <assign variable="menuHarga[14]" expression="80000"/>
+            <assign variable="menuNama[15]" expression="&quot;Steak Sapi&quot;"/> <assign variable="menuHarga[15]" expression="140000"/>
+            <assign variable="menuNama[16]" expression="&quot;Steak Sapi Premium&quot;"/> <assign variable="menuHarga[16]" expression="250000"/>
+            <assign variable="menuNama[17]" expression="&quot;Air Mineral&quot;"/> <assign variable="menuHarga[17]" expression="12000"/>
+            <assign variable="menuNama[18]" expression="&quot;Es Teh&quot;"/> <assign variable="menuHarga[18]" expression="20000"/>
+            <assign variable="menuNama[19]" expression="&quot;Teh Hangat&quot;"/> <assign variable="menuHarga[19]" expression="20000"/>
+            <assign variable="menuNama[20]" expression="&quot;Jus Jeruk&quot;"/> <assign variable="menuHarga[20]" expression="25000"/>
+            <assign variable="menuNama[21]" expression="&quot;Susu Coklat&quot;"/> <assign variable="menuHarga[21]" expression="35000"/>
+            <assign variable="menuNama[22]" expression="&quot;Cocktail&quot;"/> <assign variable="menuHarga[22]" expression="75000"/>
+            <assign variable="menuNama[23]" expression="&quot;Vodka&quot;"/> <assign variable="menuHarga[23]" expression="250000"/>
+            <assign variable="menuNama[24]" expression="&quot;Grape Wine&quot;"/> <assign variable="menuHarga[24]" expression="950000"/>
+            <assign variable="menuNama[25]" expression="&quot;Whisky&quot;"/> <assign variable="menuHarga[25]" expression="1500000"/>
+            <assign variable="menuNama[26]" expression="&quot;Tequila&quot;"/> <assign variable="menuHarga[26]" expression="1200000"/>
+            <assign variable="menuNama[27]" expression="&quot;Sake&quot;"/> <assign variable="menuHarga[27]" expression="850000"/>
+
+            <for variable="i" start="0" end="jmlMenu - 1" direction="inc" step="1">
+                <assign variable="storeqty[i]" expression="0"/>
+            </for>
+
+            <output expression="&quot;==========================================&quot;" newline="True"/>
+            <output expression="namarestoran" newline="True"/>
+            <output expression="&quot;==========================================&quot;" newline="True"/>
+            <output expression="&quot;MAU PESAN APA ? (Ketik -1 untuk selesai memesan)&quot;" newline="True"/>
+            <output expression="&quot;DAFTAR MENU:&quot;" newline="True"/>
+
+            <for variable="i" start="0" end="jmlMenu - 1" direction="inc" step="1">
+                <output expression="(i + 1) &amp; &quot;. &quot; &amp; menuNama[i] &amp; &quot;: Rp &quot; &amp; menuHarga[i]" newline="True"/>
+            </for>
+
+            <assign variable="lanjutPesan" expression="True"/>
+            <while expression="lanjutPesan">
+                <output expression="&quot;Pilih menu (1-28 atau -1 untuk bayar): &quot;" newline="False"/>
+                <input variable="input"/>
+                <if expression="input == -1">
+                    <then>
+                        <assign variable="lanjutPesan" expression="False"/>
+                    </then>
+                    <else>
+                        <if expression="input &gt;= 1 &amp;&amp; input &lt;= jmlMenu">
+                            <then>
+                                <output expression="&quot;Jumlah pesanan: &quot;" newline="False"/>
+                                <input variable="qty"/>
+                                <if expression="qty &gt;= 0">
+                                    <then>
+                                        <assign variable="totalprice" expression="totalprice + (qty * menuHarga[input - 1])"/>
+                                        <assign variable="storeqty[input - 1]" expression="storeqty[input - 1] + qty"/>
+                                        <output expression="&quot;Anda memesan &quot; &amp; qty &amp; &quot; porsi &quot; &amp; menuNama[input - 1]" newline="True"/>
+                                    </then>
+                                    <else>
+                                        <output expression="&quot;Jumlah pesanan tidak valid&quot;" newline="True"/>
+                                    </else>
+                                </if>
+                            </then>
+                            <else>
+                                <output expression="&quot;Menu tidak tersedia / tidak valid&quot;" newline="True"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </while>
+
+            <!-- Rincian Belanja -->
+            <output expression="&quot;==========================================&quot;" newline="True"/>
+            <output expression="&quot;             RINCIAN BELANJA&quot;" newline="True"/>
+            <output expression="&quot;==========================================&quot;" newline="True"/>
+            <for variable="j" start="0" end="jmlMenu - 1" direction="inc" step="1">
+                <if expression="storeqty[j] &gt; 0">
+                    <then>
+                        <output expression="&quot;Menu: &quot; &amp; menuNama[j] &amp; &quot; | Qty: &quot; &amp; storeqty[j] &amp; &quot; | Harga: &quot; &amp; menuHarga[j] &amp; &quot; | Total: &quot; &amp; (storeqty[j] * menuHarga[j])" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+
+            <output expression="&quot;Subtotal: &quot; &amp; totalprice" newline="True"/>
+            <output expression="&quot;Pajak: &quot; &amp; pajak &amp; &quot;%&quot;" newline="True"/>
+            <output expression="&quot;Diskon: &quot; &amp; diskon &amp; &quot;%&quot;" newline="True"/>
+            <assign variable="finalprice" expression="totalprice + (totalprice * pajak / 100) - (totalprice * diskon / 100)"/>
+            <output expression="&quot;Total Akhir: &quot; &amp; finalprice" newline="True"/>
+
+            <output expression="&quot;Input Pembayaran: &quot;" newline="False"/>
+            <input variable="saldo"/>
+
+            <if expression="saldo &gt;= finalprice">
+                <then>
+                    <output expression="&quot;==========================================&quot;" newline="True"/>
+                    <output expression="&quot;              STRUK BELANJA&quot;" newline="True"/>
+                    <output expression="&quot;==========================================&quot;" newline="True"/>
+                    <output expression="namarestoran" newline="True"/>
+                    <output expression="header" newline="True"/>
+                    <output expression="&quot;==========================================&quot;" newline="True"/>
+                    <output expression="&quot;RINCIAN MENU&quot;" newline="True"/>
+                    <output expression="&quot;==========================================&quot;" newline="True"/>
+                    <for variable="j" start="0" end="jmlMenu - 1" direction="inc" step="1">
+                        <if expression="storeqty[j] &gt; 0">
+                            <then>
+                                <output expression="&quot;Menu: &quot; &amp; menuNama[j] &amp; &quot; | Qty: &quot; &amp; storeqty[j] &amp; &quot; | Harga: &quot; &amp; menuHarga[j] &amp; &quot; | Total: &quot; &amp; (storeqty[j] * menuHarga[j])" newline="True"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </for>
+                    <output expression="&quot;Subtotal: &quot; &amp; totalprice" newline="True"/>
+                    <output expression="&quot;Pajak: &quot; &amp; pajak &amp; &quot;%&quot;" newline="True"/>
+                    <output expression="&quot;Diskon: &quot; &amp; diskon &amp; &quot;%&quot;" newline="True"/>
+                    <output expression="&quot;Total Akhir: &quot; &amp; finalprice" newline="True"/>
+                    <output expression="&quot;Bayar: &quot; &amp; saldo" newline="True"/>
+                    <assign variable="saldo" expression="saldo - finalprice"/>
+                    <output expression="&quot;Kembalian: &quot; &amp; saldo" newline="True"/>
+                    <output expression="&quot;==========================================&quot;" newline="True"/>
+                    <output expression="footer" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Input Pembayaran yang anda masukkan tidak cukup :(&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
